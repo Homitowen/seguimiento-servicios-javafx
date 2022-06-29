@@ -25,11 +25,6 @@ public class HelloController {
     private Selector selector;
 
 
-    public HelloController() {
-        System.out.println("hellocontroller");
-
-    }
-
 
     @FXML
     private ResourceBundle resources;
@@ -221,12 +216,6 @@ public class HelloController {
 
 
 
-
-
-
-
-
-
     @FXML
     void initialize() {
 
@@ -239,4 +228,7 @@ public class HelloController {
 
 
     }
+
+
+
 }

@@ -12,6 +12,12 @@ public class Base {
         System.out.println("cerrando base");
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        System.out.println("cerrando de manera rara");
+    }
+
     public void cargarServicioCrear(Informacion informacion){
         System.out.println("nombre: " + informacion.getNombre());
         System.out.println("pagina: " + informacion.getPagina());
