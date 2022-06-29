@@ -25,12 +25,23 @@ public class HelloController {
     private Selector selector;
 
 
+    @FXML
+    private Button btnGenerarArchivo;
 
     @FXML
-    private ResourceBundle resources;
+    private Button btnImprimir;
 
     @FXML
-    private URL location;
+    private Button btnSetFechaResumenFaltantes;
+
+    @FXML
+    private DatePicker dpSetFechaResumen;
+
+    @FXML
+    private Button btnSalir;
+
+    @FXML
+    private VBox vbTipo;
 
     @FXML
     private MenuButton mbTipo;
@@ -40,6 +51,9 @@ public class HelloController {
 
     @FXML
     private MenuItem mbPago;
+
+    @FXML
+    private VBox vbActividad;
 
     @FXML
     private MenuButton mbActividad;
@@ -120,65 +134,191 @@ public class HelloController {
     private Button btnEliminarServicio;
 
     @FXML
+    private Label lbMes;
+
+    @FXML
+    private Label lbAño;
+
+    @FXML
+    private Label lbCantidadTotal;
+
+    @FXML
+    private TableView<?> tvFaltante;
+
+    @FXML
+    private TableColumn<?, ?> tcIdServicioFaltante;
+
+    @FXML
+    private TableColumn<?, ?> tcNombreFaltante;
+
+    @FXML
+    private Label lbMesFaltante;
+
+    @FXML
+    private Label lbAñoFaltante;
+
+    @FXML
+    private HBox hbTituloServicio;
+
+    @FXML
+    private HBox hbTituloPago;
+
+    @FXML
+    private Label lbNombreServicioPago;
+
+    @FXML
+    private HBox hbTituloResumen;
+
+    @FXML
+    private Label lbMesResumen;
+
+    @FXML
+    private Label lbAñoResumen;
+
+    @FXML
+    private TableView<?> tvServicio;
+
+    @FXML
+    private TableColumn<?, ?> tcIdServicioServicio;
+
+    @FXML
+    private TableColumn<?, ?> tcNombreServicio;
+
+    @FXML
+    private TableColumn<?, ?> tcPaginaServicio;
+
+    @FXML
+    private TableView<?> tvPago;
+
+    @FXML
+    private TableColumn<?, ?> tcIdServicioPago;
+
+    @FXML
+    private TableColumn<?, ?> tcIdPagoPago;
+
+    @FXML
+    private TableColumn<?, ?> tcFechaPago;
+
+    @FXML
+    private TableColumn<?, ?> tcCostoPago;
+
+    @FXML
+    private TableView<?> tvResumen;
+
+    @FXML
+    private TableColumn<?, ?> tcIdServicioResumen;
+
+    @FXML
+    private TableColumn<?, ?> tcNombreResumen;
+
+    @FXML
+    private TableColumn<?, ?> tcIdPagoResumen;
+
+    @FXML
+    private TableColumn<?, ?> tcFechaResumen;
+
+    @FXML
+    private TableColumn<?, ?> tcCostoResumen;
+
+    @FXML
+    void onClickFaltante(MouseEvent event) {
+
+    }
+
+    @FXML
+    void onClickPago(MouseEvent event) {
+
+    }
+
+    @FXML
+    void onClickResumen(MouseEvent event) {
+
+    }
+
+    @FXML
+    void onClickServicio(MouseEvent event) {
+
+    }
+
+    @FXML
     void onCrear(ActionEvent event) {
-        selector.mostrarCrear();
+
     }
 
     @FXML
     void onCrearPago(ActionEvent event) {
-        selector.recolectarCrear();
+
     }
 
     @FXML
     void onCrearServicio(ActionEvent event) {
-        selector.recolectarCrear();
+
     }
 
     @FXML
     void onEliminar(ActionEvent event) {
-        selector.mostrarEliminar();
+
     }
 
     @FXML
     void onEliminarPago(ActionEvent event) {
-        selector.recolectarEliminar();
+
     }
 
     @FXML
     void onEliminarServicio(ActionEvent event) {
-        selector.recolectarEliminar();
+
+    }
+
+    @FXML
+    void onGenerarArchivo(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onImprimir(ActionEvent event) {
+
     }
 
     @FXML
     void onMbTipo(MouseEvent event) {
-        selector.reiniciar();
+
     }
 
     @FXML
     void onModificar(ActionEvent event) {
-        selector.mostrarModificar();
+
     }
 
     @FXML
     void onModificarPago(ActionEvent event) {
-        selector.recolectarModificar();
+
     }
 
     @FXML
     void onModificarServicio(ActionEvent event) {
-        selector.recolectarModificar();
+
     }
 
     @FXML
     void onPago(ActionEvent event) {
-        selector.mostrarPago();
+
+    }
+
+    @FXML
+    void onSalir(ActionEvent event) {
+
     }
 
     @FXML
     void onServicio(ActionEvent event) {
-        selector.mostrarServicio();
+
     }
 
+    @FXML
+    void onSetFechaResmuneFaltante(ActionEvent event) {
+
+    }
 
 
 
