@@ -2,8 +2,6 @@ package com.example.pruebainterfacesgrafica.controlador;
 
 import com.example.pruebainterfacesgrafica.mecanica.base.Base;
 import com.example.pruebainterfacesgrafica.mecanica.dato.Dato;
-
-import com.example.pruebainterfacesgrafica.mecanica.dato.Servicio;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -11,8 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 
 public class HelloController {
@@ -23,6 +19,7 @@ public class HelloController {
 
     private Partes servicio, pago;
     private Selector selector;
+    private Tabla servicioTabla, pagoTabla, faltanteTabla, resumenTabla;
 
 
     @FXML
@@ -75,6 +72,12 @@ public class HelloController {
 
     @FXML
     private TextField txtIdServicio;
+
+    @FXML
+    private VBox vBoxNombrePago;
+
+    @FXML
+    private TextField txtIdServicio1;
 
     @FXML
     private VBox vBoxIdPago;
@@ -192,6 +195,9 @@ public class HelloController {
 
     @FXML
     private TableColumn<?, ?> tcIdServicioPago;
+
+    @FXML
+    private TableColumn<?, ?> tcNombrePago;
 
     @FXML
     private TableColumn<?, ?> tcIdPagoPago;
@@ -364,6 +370,9 @@ public class HelloController {
         pago = new PagoParte(hBoxPago,btnCrearPago,btnModificarPago,btnEliminarPago,vBoxIdServicioPago,vBoxIdPago,vBoxFechaPago,vBoxCostoPago,txtIdServicio,txtIdPago,dpFecha,txtCosto);
 
         selector = new Selector(mbTipo, mbActividad, mbServicio, mbPago, mbCrear, mbModificar, mbEliminar, servicio, pago);
+
+        servicioTabla = new ServicioTabla(hbTituloServicio, tvServicio, tcIdServicioServicio, tcNombreServicio);
+//        pagoTabla = new PagoTabla(hbTituloPago, tvPago, tcIdServicioPago, tcnom)
 
 
 
