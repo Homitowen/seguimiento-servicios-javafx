@@ -14,5 +14,4 @@ public class PagoTabla extends ServicioTabla{
         this.fecha = fecha;
         this.costo = costo;
     }
-
 }

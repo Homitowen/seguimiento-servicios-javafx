@@ -13,4 +13,5 @@ public class ResumenTabla extends PagoTabla {
         super(titulo, tabla, idServicio, nombre, idPago, fecha, costo);
         this.fechaSeleccionada = fechaSeleccionada;
     }
+
 }

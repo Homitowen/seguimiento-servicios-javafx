@@ -4,6 +4,8 @@ module com.example.pruebainterfacesgrafica {
     requires java.sql;
 
 
+
+
     opens com.example.pruebainterfacesgrafica to javafx.fxml;
     exports com.example.pruebainterfacesgrafica;
     exports com.example.pruebainterfacesgrafica.controlador;

@@ -1,9 +1,10 @@
 package com.example.pruebainterfacesgrafica.mecanica.dato;
 
-import com.example.pruebainterfacesgrafica.mecanica.base.Base;
+import java.time.LocalDate;
 
 public class Servicio implements Informacion{
-    private String idS, nombre, pagina;
+    private int idS;
+    private String nombre, pagina;
 
     @Override
     public String toString() {
@@ -14,8 +15,13 @@ public class Servicio implements Informacion{
                 '}';
     }
 
-    public Servicio(String idS) {
+    public Servicio(int idS) {
         this.idS = idS;
+    }
+
+    public Servicio(int idS, String nombre) {
+        this.idS = idS;
+        this.nombre = nombre;
     }
 
     public Servicio(String nombre, String pagina) {
@@ -23,14 +29,14 @@ public class Servicio implements Informacion{
         this.pagina = pagina;
     }
 
-    public Servicio(String idS, String nombre, String pagina) {
+    public Servicio(int idS, String nombre, String pagina) {
         this.idS = idS;
         this.nombre = nombre;
         this.pagina = pagina;
     }
 
     @Override
-    public String getIdS() {
+    public int getIdS() {
         return this.idS;
     }
 
@@ -45,37 +51,59 @@ public class Servicio implements Informacion{
     }
 
     @Override
-    public String getIdP() {
+    public int getIdP() {
+        return Integer.parseInt(null);
+    }
+
+    @Override
+    public LocalDate getFecha() {
         return null;
     }
 
     @Override
-    public String getFecha() {
-        return null;
-    }
-
-    @Override
-    public String getCosto() {
-        return null;
+    public double getCosto() {
+        return Double.parseDouble(null);
     }
 
     public static class Pago extends Servicio{
 
-        private String idP, fecha, costo;
+        private int idP;
+        private LocalDate fecha;
+        private double costo;
 
-        public Pago(String idS, String idP) {
+        /**
+         * Eliminar
+         * @param idS
+         * @param idP
+         */
+        public Pago(int idS, int idP) {
             super(idS);
             this.idP = idP;
         }
 
-        public Pago(String idS, String fecha, String costo) {
-            super(idS);
+        /**
+         * crear
+         * @param idS
+         * @param nombre
+         * @param fecha
+         * @param costo
+         */
+        public Pago(int idS, String nombre, LocalDate fecha, double costo) {
+            super(idS, nombre);
             this.fecha = fecha;
             this.costo = costo;
         }
 
-        public Pago(String idS, String idP, String fecha, String costo) {
-            super(idS);
+        /**
+         * modificar
+         * @param idS
+         * @param nombre
+         * @param idP
+         * @param fecha
+         * @param costo
+         */
+        public Pago(int idS, String nombre, int idP, LocalDate fecha, double costo) {
+            super(idS, nombre);
             this.idP = idP;
             this.fecha = fecha;
             this.costo = costo;
@@ -91,17 +119,17 @@ public class Servicio implements Informacion{
         }
 
         @Override
-        public String getIdP() {
+        public int getIdP() {
             return this.idP;
         }
 
         @Override
-        public String getFecha() {
+        public LocalDate getFecha() {
             return this.fecha;
         }
 
         @Override
-        public String getCosto() {
+        public double getCosto() {
             return this.costo;
         }
     }

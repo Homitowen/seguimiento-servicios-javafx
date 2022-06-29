@@ -1,10 +1,11 @@
 package com.example.pruebainterfacesgrafica.controlador;
 
+import com.example.pruebainterfacesgrafica.mecanica.dato.Informacion;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class Tabla {
+public abstract class Tabla {
     private HBox titulo;
     private TableView tabla;
 
@@ -34,4 +35,8 @@ public class Tabla {
         ocultarTabla();
         ocultarTitulo();
     }
+    public abstract void clickear();
+    public abstract void enviarInformacion();
+    public abstract void actualizar();
+
 }

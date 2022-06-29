@@ -76,14 +76,14 @@ public class ServicioParte extends Partes{
 
     @Override
     public void recolectarModificar() {
-        inf = new Servicio(idS.getText(), nombre.getText(), pagina.getText());
+        inf = new Servicio(Integer.parseInt(idS.getText()), nombre.getText(), pagina.getText());
         System.out.println(inf);
         reiniciarTxt();
     }
 
     @Override
     public void recolectarEliminar() {
-        inf = new Servicio(idS.getText());
+        inf = new Servicio(Integer.parseInt(idS.getText()));
         System.out.println(inf);
         reiniciarTxt();
     }

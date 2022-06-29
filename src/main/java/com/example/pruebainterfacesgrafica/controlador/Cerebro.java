@@ -3,12 +3,27 @@ package com.example.pruebainterfacesgrafica.controlador;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 
-public class Selector {
+public class Cerebro {
     private MenuButton tipo, actividad;
     private MenuItem tipoServicio, tipoPago, actCrear, actModificar, actEliminar;
     private Partes servicio, pago, elegido;
+    private Tabla servicioTabla;
+    private Tabla tablaElegida;
 
-    public Selector(MenuButton tipo, MenuButton actividad, MenuItem tipoServicio, MenuItem tipoPago, MenuItem actCrear, MenuItem actModificar, MenuItem actEliminar, Partes servicio, Partes pago) {
+    public Cerebro(MenuButton tipo, MenuButton actividad, MenuItem tipoServicio, MenuItem tipoPago, MenuItem actCrear, MenuItem actModificar, MenuItem actEliminar, Partes servicio, Partes pago, Tabla servicioTabla) {
+        this.tipo = tipo;
+        this.actividad = actividad;
+        this.tipoServicio = tipoServicio;
+        this.tipoPago = tipoPago;
+        this.actCrear = actCrear;
+        this.actModificar = actModificar;
+        this.actEliminar = actEliminar;
+        this.servicio = servicio;
+        this.pago = pago;
+        this.servicioTabla = servicioTabla;
+    }
+
+    public Cerebro(MenuButton tipo, MenuButton actividad, MenuItem tipoServicio, MenuItem tipoPago, MenuItem actCrear, MenuItem actModificar, MenuItem actEliminar, Partes servicio, Partes pago) {
         this.tipo = tipo;
         this.actividad = actividad;
         this.tipoServicio = tipoServicio;
@@ -20,7 +35,8 @@ public class Selector {
         this.pago = pago;
     }
 
-    public Selector(MenuButton tipo, MenuButton actividad, MenuItem tipoServicio, MenuItem tipoPago, MenuItem actCrear, MenuItem actModificar, MenuItem actEliminar, Partes servicio) {
+
+    public Cerebro(MenuButton tipo, MenuButton actividad, MenuItem tipoServicio, MenuItem tipoPago, MenuItem actCrear, MenuItem actModificar, MenuItem actEliminar, Partes servicio) {
         this.tipo = tipo;
         this.actividad = actividad;
         this.tipoServicio = tipoServicio;
@@ -29,6 +45,10 @@ public class Selector {
         this.actModificar = actModificar;
         this.actEliminar = actEliminar;
         this.servicio = servicio;
+    }
+
+    public void copiarClip(){
+
     }
 
     public void reiniciar(){
@@ -42,11 +62,22 @@ public class Selector {
     private void adaptarPago(){
         elegido = pago;
     }
+    private void adaptarPrimerTabla(){
+        tablaElegida = servicioTabla;
+    }
+
+    private void adaptarSegundaTabla(){
+
+    }
+
 
     public void mostrarServicio(){
         tipo.setText("Servicio");
         adaptarServicio();
         elegido.mostrar();
+        adaptarPrimerTabla();
+        tablaElegida.mostrar();
+
     }
     public void mostrarPago(){
         tipo.setText("Pago");

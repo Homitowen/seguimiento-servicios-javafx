@@ -2,6 +2,7 @@ package com.example.pruebainterfacesgrafica.controlador;
 
 import com.example.pruebainterfacesgrafica.mecanica.base.Base;
 import com.example.pruebainterfacesgrafica.mecanica.dato.Dato;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -9,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import javax.security.auth.login.Configuration;
 
 
 public class HelloController {
@@ -18,7 +20,7 @@ public class HelloController {
 
 
     private Partes servicio, pago;
-    private Selector selector;
+    private Cerebro selector;
     private Tabla servicioTabla, pagoTabla, faltanteTabla, resumenTabla;
 
 
@@ -75,6 +77,9 @@ public class HelloController {
 
     @FXML
     private VBox vBoxNombrePago;
+
+    @FXML
+    private TextField txtNombrePago;
 
     @FXML
     private TextField txtIdServicio1;
@@ -247,33 +252,39 @@ public class HelloController {
     }
 
     @FXML
-    void onCrear(ActionEvent event) {
+    void onCosto(ActionEvent event) {
 
+    }
+
+
+    @FXML
+    void onCrear(ActionEvent event) {
+        selector.mostrarCrear();
     }
 
     @FXML
     void onCrearPago(ActionEvent event) {
-
+        selector.recolectarCrear();
     }
 
     @FXML
     void onCrearServicio(ActionEvent event) {
-
+        selector.recolectarCrear();
     }
 
     @FXML
     void onEliminar(ActionEvent event) {
-
+        selector.mostrarEliminar();
     }
 
     @FXML
     void onEliminarPago(ActionEvent event) {
-
+        selector.recolectarEliminar();
     }
 
     @FXML
     void onEliminarServicio(ActionEvent event) {
-
+        selector.recolectarEliminar();
     }
 
     @FXML
@@ -288,37 +299,37 @@ public class HelloController {
 
     @FXML
     void onMbTipo(MouseEvent event) {
-
+        selector.reiniciar();
     }
 
     @FXML
     void onModificar(ActionEvent event) {
-
+        selector.mostrarModificar();
     }
 
     @FXML
     void onModificarPago(ActionEvent event) {
-
+        selector.recolectarModificar();
     }
 
     @FXML
     void onModificarServicio(ActionEvent event) {
-
+        selector.recolectarModificar();
     }
 
     @FXML
     void onPago(ActionEvent event) {
-
+        selector.mostrarPago();
     }
 
     @FXML
     void onSalir(ActionEvent event) {
-
+        Platform.exit();
     }
 
     @FXML
     void onServicio(ActionEvent event) {
-
+        selector.mostrarServicio();
     }
 
     @FXML
@@ -367,12 +378,12 @@ public class HelloController {
 
         servicio = new ServicioParte(hBoxServicio, btnCrearServicio, btnModificarServicio, btnEliminarServicio, txtIdServicioServicio, txtNombre, txtPagina, vBoxIdServicio, vBoxNombreServicio, vBoxPaginaServicio);
 
-        pago = new PagoParte(hBoxPago,btnCrearPago,btnModificarPago,btnEliminarPago,vBoxIdServicioPago,vBoxIdPago,vBoxFechaPago,vBoxCostoPago,txtIdServicio,txtIdPago,dpFecha,txtCosto);
-
-        selector = new Selector(mbTipo, mbActividad, mbServicio, mbPago, mbCrear, mbModificar, mbEliminar, servicio, pago);
+        pago = new PagoParte(hBoxPago,btnCrearPago,btnModificarPago,btnEliminarPago,vBoxIdServicioPago,vBoxNombrePago,vBoxIdPago,vBoxFechaPago,vBoxCostoPago,txtIdServicio,txtNombrePago,txtIdPago,txtCosto,dpFecha);
 
         servicioTabla = new ServicioTabla(hbTituloServicio, tvServicio, tcIdServicioServicio, tcNombreServicio);
-//        pagoTabla = new PagoTabla(hbTituloPago, tvPago, tcIdServicioPago, tcnom)
+
+        selector = new Cerebro(mbTipo, mbActividad, mbServicio, mbPago, mbCrear, mbModificar, mbEliminar, servicio, pago, servicioTabla);
+
 
 
 
