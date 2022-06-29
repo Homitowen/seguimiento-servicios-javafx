@@ -30,13 +30,20 @@ public class ServicioParte extends Partes{
         this.boxId = boxId;
     }
 
-    private void reiniciar(){
+    private void reiniciarTxt(){
         idS.setText(null);
         nombre.setText(null);
         pagina.setText(null);
+    }
+    private void reiniciarCajas(){
         boxId.setVisible(true);
         boxNombre.setVisible(true);
         boxPagina.setVisible(true);
+    }
+    private void reiniciar(){
+        reiniciarTxt();
+        reiniciarCajas();
+
     }
 
     @Override
@@ -64,17 +71,20 @@ public class ServicioParte extends Partes{
     public void recolectarCrear() {
         inf = new Servicio(nombre.getText(), pagina.getText());
         System.out.println(inf);
+        reiniciarTxt();
     }
 
     @Override
     public void recolectarModificar() {
         inf = new Servicio(idS.getText(), nombre.getText(), pagina.getText());
         System.out.println(inf);
+        reiniciarTxt();
     }
 
     @Override
     public void recolectarEliminar() {
         inf = new Servicio(idS.getText());
         System.out.println(inf);
+        reiniciarTxt();
     }
 }
