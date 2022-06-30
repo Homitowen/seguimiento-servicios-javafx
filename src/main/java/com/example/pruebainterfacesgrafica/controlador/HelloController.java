@@ -1,7 +1,5 @@
 package com.example.pruebainterfacesgrafica.controlador;
 
-import com.example.pruebainterfacesgrafica.mecanica.base.Base;
-import com.example.pruebainterfacesgrafica.mecanica.dato.Dato;
 import com.example.pruebainterfacesgrafica.mecanica.dato.Servicio;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -11,17 +9,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import javax.security.auth.login.Configuration;
-
 
 public class HelloController {
 
-    private Base b = new Base();
-    private Dato d = new Dato(b);
 
 
-    private Partes servicio, pago;
-    private Cerebro selector;
+    private Cargador servicio, pago;
+    private Cerebro cerebro;
     private Tabla servicioTabla, pagoTabla, faltanteTabla, resumenTabla;
 
 
@@ -239,7 +233,7 @@ public class HelloController {
 
     @FXML
     void onClickPago(MouseEvent event) {
-
+        cerebro.pasarTablaAlCargador();
     }
 
     @FXML
@@ -249,7 +243,7 @@ public class HelloController {
 
     @FXML
     void onClickServicio(MouseEvent event) {
-
+        cerebro.pasarTablaAlCargador();
     }
 
     @FXML
@@ -260,32 +254,32 @@ public class HelloController {
 
     @FXML
     void onCrear(ActionEvent event) {
-        selector.mostrarCrear();
+        cerebro.mostrarCrear();
     }
 
     @FXML
     void onCrearPago(ActionEvent event) {
-        selector.recolectarCrear();
+        cerebro.recolectarCrear();
     }
 
     @FXML
     void onCrearServicio(ActionEvent event) {
-        selector.recolectarCrear();
+        cerebro.recolectarCrear();
     }
 
     @FXML
     void onEliminar(ActionEvent event) {
-        selector.mostrarEliminar();
+        cerebro.mostrarEliminar();
     }
 
     @FXML
     void onEliminarPago(ActionEvent event) {
-        selector.recolectarEliminar();
+        cerebro.recolectarEliminar();
     }
 
     @FXML
     void onEliminarServicio(ActionEvent event) {
-        selector.recolectarEliminar();
+        cerebro.recolectarEliminar();
     }
 
     @FXML
@@ -295,42 +289,42 @@ public class HelloController {
 
     @FXML
     void onImprimir(ActionEvent event) {
-        selector.cargarTest();
+        cerebro.cargarTablaAlTest();
     }
 
     @FXML
     void onMbTipo(MouseEvent event) {
-        selector.reiniciar();
+        cerebro.reiniciar();
     }
 
     @FXML
     void onModificar(ActionEvent event) {
-        selector.mostrarModificar();
+        cerebro.mostrarModificar();
     }
 
     @FXML
     void onModificarPago(ActionEvent event) {
-        selector.recolectarModificar();
+        cerebro.recolectarModificar();
     }
 
     @FXML
     void onModificarServicio(ActionEvent event) {
-        selector.recolectarModificar();
+        cerebro.recolectarModificar();
     }
 
     @FXML
     void onPago(ActionEvent event) {
-        selector.mostrarPago();
+        cerebro.mostrarPago();
     }
 
     @FXML
     void onSalir(ActionEvent event) {
-        Platform.exit();
+        cerebro.apagar();
     }
 
     @FXML
     void onServicio(ActionEvent event) {
-        selector.mostrarServicio();
+        cerebro.mostrarServicio();
     }
 
     @FXML
@@ -377,15 +371,15 @@ public class HelloController {
     @FXML
     void initialize() {
 
-        servicio = new ServicioParte(hBoxServicio, btnCrearServicio, btnModificarServicio, btnEliminarServicio, txtIdServicioServicio, txtNombre, txtPagina, vBoxIdServicio, vBoxNombreServicio, vBoxPaginaServicio);
+        servicio = new ServicioCargador(hBoxServicio, btnCrearServicio, btnModificarServicio, btnEliminarServicio, txtIdServicioServicio, txtNombre, txtPagina, vBoxIdServicio, vBoxNombreServicio, vBoxPaginaServicio);
 
-        pago = new PagoParte(hBoxPago,btnCrearPago,btnModificarPago,btnEliminarPago,vBoxIdServicioPago,vBoxNombrePago,vBoxIdPago,vBoxFechaPago,vBoxCostoPago,txtIdServicio,txtNombrePago,txtIdPago,txtCosto,dpFecha);
+        pago = new PagoCargador(hBoxPago,btnCrearPago,btnModificarPago,btnEliminarPago,vBoxIdServicioPago,vBoxNombrePago,vBoxIdPago,vBoxFechaPago,vBoxCostoPago,txtIdServicio,txtNombrePago,txtIdPago,txtCosto,dpFecha);
 
         servicioTabla = new ServicioTabla(hbTituloServicio, tvServicio, tcIdServicioServicio, tcNombreServicio, tcPaginaServicio);
 
         pagoTabla = new PagoTabla(hbTituloPago, tvPago, tcIdServicioPago, tcNombrePago, tcIdPagoPago, tcFechaPago, tcCostoPago);
 
-        selector = new Cerebro(mbTipo, mbActividad, mbServicio, mbPago, mbCrear, mbModificar, mbEliminar, servicio, pago, servicioTabla, pagoTabla);
+        cerebro = new Cerebro(mbTipo, mbActividad, mbServicio, mbPago, mbCrear, mbModificar, mbEliminar, servicio, pago, servicioTabla, pagoTabla);
 
 
 

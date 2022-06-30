@@ -1,7 +1,9 @@
 package com.example.pruebainterfacesgrafica.controlador;
 
+import com.example.pruebainterfacesgrafica.mecanica.constantes.Cte;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -13,5 +15,16 @@ public class PagoTabla extends ServicioTabla{
         this.idPago = idPago;
         this.fecha = fecha;
         this.costo = costo;
+        setTipo(Cte.Tipo.PAGO);
+        configurarColumnas();
+    }
+
+    @Override
+    public void configurarColumnas() {
+        getIdServicio().setCellValueFactory(new PropertyValueFactory("idS"));
+        getNombre().setCellValueFactory(new PropertyValueFactory("nombre"));
+        idPago.setCellValueFactory(new PropertyValueFactory("idP"));
+        fecha.setCellValueFactory(new PropertyValueFactory("fecha"));
+        costo.setCellValueFactory(new PropertyValueFactory("costo"));
     }
 }

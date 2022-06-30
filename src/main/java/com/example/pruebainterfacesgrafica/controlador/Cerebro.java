@@ -1,19 +1,20 @@
 package com.example.pruebainterfacesgrafica.controlador;
 
 import com.example.pruebainterfacesgrafica.TestTablas;
-import com.example.pruebainterfacesgrafica.mecanica.dato.Servicio;
-import javafx.collections.ObservableList;
+import com.example.pruebainterfacesgrafica.mecanica.base.Base;
+import javafx.application.Platform;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 
 public class Cerebro {
+    private Base b;
     private MenuButton tipo, actividad;
     private MenuItem tipoServicio, tipoPago, actCrear, actModificar, actEliminar;
-    private Partes servicio, pago, elegido;
-    private Tabla servicioTabla, pagoTabla;
-    private Tabla tablaElegida;
+    private Cargador servicioCargador, pagoCargador, cargadorElegido;
+    private Tabla servicioTabla, pagoTabla, tablaElegida;
+    private TestTablas test;
 
-    public Cerebro(MenuButton tipo, MenuButton actividad, MenuItem tipoServicio, MenuItem tipoPago, MenuItem actCrear, MenuItem actModificar, MenuItem actEliminar, Partes servicio, Partes pago, Tabla servicioTabla, Tabla pagoTabla) {
+    public Cerebro(MenuButton tipo, MenuButton actividad, MenuItem tipoServicio, MenuItem tipoPago, MenuItem actCrear, MenuItem actModificar, MenuItem actEliminar, Cargador servicio, Cargador pagoCargador, Tabla servicioTabla, Tabla pagoTabla) {
         this.tipo = tipo;
         this.actividad = actividad;
         this.tipoServicio = tipoServicio;
@@ -21,52 +22,37 @@ public class Cerebro {
         this.actCrear = actCrear;
         this.actModificar = actModificar;
         this.actEliminar = actEliminar;
-        this.servicio = servicio;
-        this.pago = pago;
+        this.servicioCargador = servicio;
+        this.pagoCargador = pagoCargador;
         this.servicioTabla = servicioTabla;
         this.pagoTabla = pagoTabla;
         tablaElegida = servicioTabla;
-        elegido = servicio;
-    }
+        cargadorElegido = servicio;
+        b = new Base();
 
-
-
-    public Cerebro(MenuButton tipo, MenuButton actividad, MenuItem tipoServicio, MenuItem tipoPago, MenuItem actCrear, MenuItem actModificar, MenuItem actEliminar, Partes servicio) {
-        this.tipo = tipo;
-        this.actividad = actividad;
-        this.tipoServicio = tipoServicio;
-        this.tipoPago = tipoPago;
-        this.actCrear = actCrear;
-        this.actModificar = actModificar;
-        this.actEliminar = actEliminar;
-        this.servicio = servicio;
-    }
-
-    public void cargarTest(){
-        TestTablas test = new TestTablas();
-        ObservableList<Servicio> arreglado = test.conjuntoServiciosTest();
-        tablaElegida.cargarTabla(arreglado);
+        test = new TestTablas();
     }
 
     public void reiniciar(){
-        servicio.ocultar();
-        pago.ocultar();
+        servicioCargador.ocultar();
+        pagoCargador.ocultar();
     }
 
     private void adaptarServicio(){
-        elegido = servicio;
+        cargadorElegido = servicioCargador;
     }
     private void adaptarPago(){
-        elegido = pago;
+        cargadorElegido = pagoCargador;
     }
     private void adaptarPrimerTabla(){
         tablaElegida.ocultar();
+        tablaElegida.limpiarTabla();
         tablaElegida = servicioTabla;
         tablaElegida.mostrar();
     }
-
     private void adaptarSegundaTabla(){
         tablaElegida.ocultar();
+        tablaElegida.limpiarTabla();
         tablaElegida = pagoTabla;
         tablaElegida.mostrar();
     }
@@ -75,7 +61,7 @@ public class Cerebro {
     public void mostrarServicio(){
         tipo.setText("Servicio");
         adaptarServicio();
-        elegido.mostrar();
+        cargadorElegido.mostrar();
         adaptarPrimerTabla();
         tablaElegida.mostrar();
 
@@ -83,30 +69,43 @@ public class Cerebro {
     public void mostrarPago(){
         tipo.setText("Pago");
         adaptarPago();
-        elegido.mostrar();
+        cargadorElegido.mostrar();
         adaptarSegundaTabla();
         tablaElegida.mostrar();
     }
 
     public void mostrarCrear(){
         actividad.setText("Crear");
-        elegido.paraCrear();
+        cargadorElegido.paraCrear();
     }
     public void mostrarModificar(){
         actividad.setText("Modificar");
-        elegido.paraModificar();
+        cargadorElegido.paraModificar();
     }
     public void mostrarEliminar(){
         actividad.setText("Eliminar");
-        elegido.paraEliminar();
+        cargadorElegido.paraEliminar();
     }
+
     public void recolectarCrear(){
-        elegido.recolectarCrear();
+        cargadorElegido.recolectarCrear();
     }
     public void recolectarModificar(){
-        elegido.recolectarModificar();
+        cargadorElegido.recolectarModificar();
     }
     public void recolectarEliminar(){
-        elegido.recolectarEliminar();
+        cargadorElegido.recolectarEliminar();
+    }
+
+    public void pasarTablaAlCargador(){
+        cargadorElegido.recibirInformacionTabla(tablaElegida.enviarRenglonClickeado());
+    }
+    public void cargarTablaAlTest() {
+        test.determinarTablayCargar(tablaElegida);
+    }
+
+    public void apagar() {
+        b.cerrarTodo();
+        Platform.exit();
     }
 }

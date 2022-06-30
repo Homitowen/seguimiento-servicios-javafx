@@ -2,7 +2,7 @@ package com.example.pruebainterfacesgrafica.mecanica.constantes;
 
 public class  Cte {
     public enum Tipo{
-        SERVICIO, PAGO;
+        SERVICIO, PAGO, RESUMEN, FALTANTE;
     }
     public enum Act{
         CREAR, MODIFICAR, ELIMINAR, VER;
@@ -36,6 +36,7 @@ public class  Cte {
             ""+tablaPagoFecha+" VARCHAR(30) NOT NULL," +
             ""+tablaPagoCosto+" VARCHAR(60) NOT NULL," +
             ""+tablaServicioId+" INT NOT NULL," +
+            ""+tablaServicioNombre+" INT NOT NULL,"+
             "FOREIGN KEY("+tablaServicioId+")" +
             "REFERENCES "+tablaServicio+" ("+tablaServicioId+") ON DELETE CASCADE)";
         //comandos SQL

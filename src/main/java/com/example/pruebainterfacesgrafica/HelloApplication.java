@@ -1,6 +1,5 @@
 package com.example.pruebainterfacesgrafica;
 
-import com.example.pruebainterfacesgrafica.mecanica.base.Base;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,18 +9,6 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
-    private Base b;
-   @Override
-    public void init() throws Exception {
-        super.init();
-        b = new Base();
-    }
-
-    @Override
-    public void stop() throws Exception {
-        super.stop();
-        b.cerrar();
-    }
 
     @Override
     public void start(Stage stage) throws IOException {

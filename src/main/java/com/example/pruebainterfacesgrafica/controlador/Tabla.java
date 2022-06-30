@@ -1,5 +1,7 @@
 package com.example.pruebainterfacesgrafica.controlador;
 
+import com.example.pruebainterfacesgrafica.mecanica.constantes.Cte;
+import com.example.pruebainterfacesgrafica.mecanica.dato.Informacion;
 import com.example.pruebainterfacesgrafica.mecanica.dato.Servicio;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
@@ -8,6 +10,15 @@ import javafx.scene.layout.HBox;
 public abstract class Tabla {
     private HBox titulo;
     private TableView tabla;
+    private Cte.Tipo tipo;
+
+    public Cte.Tipo getTipo() {
+        return this.tipo;
+    }
+
+    public void setTipo(Cte.Tipo tipo) {
+        this.tipo = tipo;
+    }
 
     public Tabla(HBox titulo, TableView tabla) {
         this.titulo = titulo;
@@ -36,10 +47,14 @@ public abstract class Tabla {
         ocultarTitulo();
     }
 
+    public void limpiarTabla(){
+        tabla.getItems().clear();
+    }
+
 
     public abstract void cargarTabla(ObservableList<Servicio> conjunto);
-    public abstract void clickearRenglon();
-    public abstract void enviarInformacion();
+    public abstract void configurarColumnas();
+    public abstract Informacion enviarRenglonClickeado();
     public abstract void actualizar();
 
     public HBox getTitulo() {

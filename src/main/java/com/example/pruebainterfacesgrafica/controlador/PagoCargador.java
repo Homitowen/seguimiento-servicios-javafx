@@ -9,9 +9,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.time.LocalDate;
-
-public class PagoParte extends Partes{
+public class PagoCargador extends Cargador {
 
     private VBox cajaIdServicio, cajaNombre,cajaIdPago, cajaFecha, cajaCosto;
     private TextField idServicio, nombre, idPago, costo;
@@ -19,7 +17,7 @@ public class PagoParte extends Partes{
     private Informacion inf;
     private Clipboard clipsito;
 
-    public PagoParte(HBox caja, Button btnCrear, Button btnModificar, Button btnEliminar, VBox cajaIdServicio, VBox cajaNombre, VBox cajaIdPago, VBox cajaFecha, VBox cajaCosto, TextField idServicio, TextField nombre, TextField idPago, TextField costo, DatePicker fecha) {
+    public PagoCargador(HBox caja, Button btnCrear, Button btnModificar, Button btnEliminar, VBox cajaIdServicio, VBox cajaNombre, VBox cajaIdPago, VBox cajaFecha, VBox cajaCosto, TextField idServicio, TextField nombre, TextField idPago, TextField costo, DatePicker fecha) {
         super(caja, btnCrear, btnModificar, btnEliminar);
         this.cajaIdServicio = cajaIdServicio;
         this.cajaNombre = cajaNombre;
@@ -75,6 +73,11 @@ public class PagoParte extends Partes{
         cajaFecha.setVisible(false);
         cajaCosto.setVisible(false);
         cajaNombre.setVisible(false);
+    }
+
+    @Override
+    public void recibirInformacionTabla(Informacion info) {
+
     }
 
     @Override

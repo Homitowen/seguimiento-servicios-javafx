@@ -1,14 +1,15 @@
 package com.example.pruebainterfacesgrafica.controlador;
 
+import com.example.pruebainterfacesgrafica.mecanica.dato.Informacion;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
-public abstract class Partes {
+public abstract class Cargador {
     private HBox caja;
     private Button btnCrear, btnModificar, eliminar;
 
 
-    public Partes(HBox caja, Button btnCrear, Button btnModificar, Button btnEliminar) {
+    public Cargador(HBox caja, Button btnCrear, Button btnModificar, Button btnEliminar) {
         this.caja = caja;
         this.btnCrear = btnCrear;
         this.btnModificar = btnModificar;
@@ -40,6 +41,7 @@ public abstract class Partes {
         eliminar.setVisible(true);
     }
 
+    public abstract void recibirInformacionTabla(Informacion info);
     public abstract void recolectarCrear();
     public abstract void recolectarModificar();
     public abstract void recolectarEliminar();

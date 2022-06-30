@@ -3,18 +3,17 @@ package com.example.pruebainterfacesgrafica.controlador;
 import com.example.pruebainterfacesgrafica.mecanica.dato.Informacion;
 import com.example.pruebainterfacesgrafica.mecanica.dato.Servicio;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class ServicioParte extends Partes{
+public class ServicioCargador extends Cargador {
 
     private TextField idS, nombre, pagina;
     private VBox boxId, boxNombre, boxPagina;
     private Informacion inf;
 
-    public ServicioParte(HBox caja, Button btnCrear, Button btnModificar, Button btnEliminar, TextField idS, TextField nombre, TextField pagina, VBox boxId, VBox boxNombre, VBox boxPagina) {
+    public ServicioCargador(HBox caja, Button btnCrear, Button btnModificar, Button btnEliminar, TextField idS, TextField nombre, TextField pagina, VBox boxId, VBox boxNombre, VBox boxPagina) {
         super(caja, btnCrear, btnModificar, btnEliminar);
         this.idS = idS;
         this.nombre = nombre;
@@ -24,7 +23,7 @@ public class ServicioParte extends Partes{
         this.boxPagina = boxPagina;
     }
 
-    public ServicioParte(HBox caja, Button btnCrear, Button btnModificar, Button btnEliminar, TextField idS, VBox boxId) {
+    public ServicioCargador(HBox caja, Button btnCrear, Button btnModificar, Button btnEliminar, TextField idS, VBox boxId) {
         super(caja, btnCrear, btnModificar, btnEliminar);
         this.idS = idS;
         this.boxId = boxId;
@@ -66,6 +65,14 @@ public class ServicioParte extends Partes{
         boxNombre.setVisible(false);
         boxPagina.setVisible(false);
     }
+
+    @Override
+    public void recibirInformacionTabla(Informacion info) {
+        idS.setText(String.valueOf(info.getIdS()));
+        nombre.setText(info.getNombre());
+        pagina.setText(info.getPagina());
+    }
+
 
     @Override
     public void recolectarCrear() {
