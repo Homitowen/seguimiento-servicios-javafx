@@ -89,12 +89,15 @@ public class Cerebro {
 
     public void recolectarCrear(){
         cargadorElegido.recolectarCrear();
+        enviarInformacionCerebroBase();
     }
     public void recolectarModificar(){
         cargadorElegido.recolectarModificar();
+        enviarInformacionCerebroBase();
     }
     public void recolectarEliminar(){
         cargadorElegido.recolectarEliminar();
+        enviarInformacionCerebroBase();
     }
 
     public void pasarTablaAlCargador(){
@@ -107,5 +110,10 @@ public class Cerebro {
     public void apagar() {
         b.cerrarTodo();
         Platform.exit();
+    }
+
+    private void enviarInformacionCerebroBase(){
+        b.setInfoRecibida(cargadorElegido.obtenerInformacionCargada());
+        b.comenzarProcesoInformacion();
     }
 }

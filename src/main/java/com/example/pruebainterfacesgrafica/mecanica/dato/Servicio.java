@@ -7,8 +7,13 @@ import java.time.LocalDate;
 public class Servicio implements Informacion{
     private int idS;
     private String nombre, pagina;
-    private Cte.Tipo tipo = Cte.Tipo.SERVICIO;
+    private static Cte.Tipo tipo;
     protected Cte.Act act;
+
+    //VER QUE ONDA CON ESTO QUE ES POSIBLE
+    {
+        tipo = Cte.Tipo.SERVICIO;
+    }
 
     @Override
     public String toString() {
@@ -18,6 +23,7 @@ public class Servicio implements Informacion{
                 ", pagina='" + pagina + '\'' +
                 '}';
     }
+
 
     /**
      * Eliminar
@@ -98,8 +104,8 @@ public class Servicio implements Informacion{
     }
 
     @Override
-    public Cte.Act getActvidiad() {
-        return null;
+    public Cte.Act getActividad() {
+        return act;
     }
 
     public static class Pago extends Servicio{
@@ -107,8 +113,10 @@ public class Servicio implements Informacion{
         private int idP;
         private LocalDate fecha;
         private double costo;
-        private Cte.Tipo tipo = Cte.Tipo.PAGO;
 
+        {
+            tipo = Cte.Tipo.PAGO;
+        }
 
 
         /**
@@ -119,7 +127,6 @@ public class Servicio implements Informacion{
         public Pago(int idS, int idP) {
             super(idS);
             this.idP = idP;
-
             act = Cte.Act.ELIMINAR;
         }
 

@@ -85,6 +85,12 @@ public class PagoCargador extends Cargador {
     }
 
     @Override
+    public Informacion obtenerInformacionCargada() {
+        return inf;
+    }
+
+
+    @Override
     public void recolectarCrear() {
         inf = new Servicio.Pago(Integer.parseInt(idServicio.getText()),
                 nombre.getText(),

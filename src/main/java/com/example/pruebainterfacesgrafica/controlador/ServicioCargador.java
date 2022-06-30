@@ -23,11 +23,6 @@ public class ServicioCargador extends Cargador {
         this.boxPagina = boxPagina;
     }
 
-    public ServicioCargador(HBox caja, Button btnCrear, Button btnModificar, Button btnEliminar, TextField idS, VBox boxId) {
-        super(caja, btnCrear, btnModificar, btnEliminar);
-        this.idS = idS;
-        this.boxId = boxId;
-    }
 
     private void reiniciarTxt(){
         idS.setText(null);
@@ -71,6 +66,11 @@ public class ServicioCargador extends Cargador {
         idS.setText(String.valueOf(info.getIdS()));
         nombre.setText(info.getNombre());
         pagina.setText(info.getPagina());
+    }
+
+    @Override
+    public Informacion obtenerInformacionCargada() {
+        return inf;
     }
 
 

@@ -36,7 +36,7 @@ public class  Cte {
             ""+tablaPagoFecha+" VARCHAR(30) NOT NULL," +
             ""+tablaPagoCosto+" VARCHAR(60) NOT NULL," +
             ""+tablaServicioId+" INT NOT NULL," +
-            ""+tablaServicioNombre+" INT NOT NULL,"+
+            ""+tablaServicioNombre+" VARCHAR(30) NOT NULL,"+
             "FOREIGN KEY("+tablaServicioId+")" +
             "REFERENCES "+tablaServicio+" ("+tablaServicioId+") ON DELETE CASCADE)";
         //comandos SQL

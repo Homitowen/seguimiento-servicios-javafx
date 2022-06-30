@@ -2,18 +2,26 @@ package com.example.pruebainterfacesgrafica.mecanica.base;
 
 import com.example.pruebainterfacesgrafica.mecanica.dato.Informacion;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
-import static com.example.pruebainterfacesgrafica.mecanica.constantes.Cte.Act.*;
-import static com.example.pruebainterfacesgrafica.mecanica.constantes.Cte.Tipo.PAGO;
-import static com.example.pruebainterfacesgrafica.mecanica.constantes.Cte.Tipo.SERVICIO;
-
 public interface ManipuladorDeBases {
 
+    static ManipuladorDeBases identificarElegirTipo(Informacion info){
+        return switch (info.getTipo()) {
+            case SERVICIO -> new Base.ServicioBase();
+            case PAGO -> new Base.PagoBase();
+            default -> null;
+        };
+    }
+    static void identificarElegirActividad(Informacion info, ManipuladorDeBases baseElegida){
+        switch (info.getActividad()){
+            case CREAR -> baseElegida.ejecutarCrear();
+            case MODIFICAR -> baseElegida.ejecutarModificar();
+            case ELIMINAR -> baseElegida.ejecutarEliminar();
+            case VER -> baseElegida.ejecutarVer();
+        }
+    }
 
     void ejecutarCrear();
     void ejecutarModificar();
     void ejecutarEliminar();
+    void ejecutarVer();
 }

@@ -13,5 +13,5 @@ public interface Informacion {
     public abstract LocalDate getFecha();
     public abstract double getCosto();
     Cte.Tipo getTipo();
-    Cte.Act getActvidiad();
+    Cte.Act getActividad();
 }

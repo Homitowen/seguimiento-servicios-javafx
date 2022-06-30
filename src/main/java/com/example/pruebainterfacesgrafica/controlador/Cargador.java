@@ -42,6 +42,7 @@ public abstract class Cargador {
     }
 
     public abstract void recibirInformacionTabla(Informacion info);
+    public abstract Informacion obtenerInformacionCargada();
     public abstract void recolectarCrear();
     public abstract void recolectarModificar();
     public abstract void recolectarEliminar();

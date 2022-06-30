@@ -3,8 +3,7 @@ import com.example.pruebainterfacesgrafica.mecanica.dato.Informacion;
 
 import java.sql.*;
 
-import static com.example.pruebainterfacesgrafica.mecanica.constantes.Cte.tablaPagoCreacion;
-import static com.example.pruebainterfacesgrafica.mecanica.constantes.Cte.tablaServicioCreacion;
+import static com.example.pruebainterfacesgrafica.mecanica.constantes.Cte.*;
 
 
 /**
@@ -14,14 +13,19 @@ import static com.example.pruebainterfacesgrafica.mecanica.constantes.Cte.tablaS
 public class Base {
 
     private String url, user, pass;
-    private Connection con;
-    private PreparedStatement st;
+    private static Connection con;
+    private static PreparedStatement st;
     private ResultSet rs;
     private String cabCrear, cabMod, cabEl;
-    private static Informacion info;
+    private static Informacion infoRecibida;
+    private ManipuladorDeBases baseElegida;
 
     public ResultSet getRs() {
         return this.rs;
+    }
+
+    public static void setInfoRecibida(Informacion infoRecibida) {
+        Base.infoRecibida = infoRecibida;
     }
 
     public Base() {
@@ -73,37 +77,99 @@ public class Base {
 
     }
 
-    private class ServicioBase implements ManipuladorDeBases{
+    public void comenzarProcesoInformacion(){
+        baseElegida = ManipuladorDeBases.identificarElegirTipo(infoRecibida);
+        ManipuladorDeBases.identificarElegirActividad(infoRecibida, baseElegida);
+    }
+
+
+    public static class ServicioBase implements ManipuladorDeBases{
 
         @Override
         public void ejecutarCrear() {
-
+            try {
+                st = con.prepareStatement(SQL_INSERT_S);
+                st.setString(1, infoRecibida.getNombre());
+                st.setString(2, infoRecibida.getPagina());
+                st.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void ejecutarModificar() {
-
+            try {
+                st = con.prepareStatement(SQL_UPDATE_S);
+                st.setString(1,infoRecibida.getNombre());
+                st.setString(2,infoRecibida.getPagina());
+                st.setString(3, String.valueOf(infoRecibida.getIdS()));
+                st.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void ejecutarEliminar() {
+            try {
+                st = con.prepareStatement(SQL_DELETE_S);
+                st.setString(1, String.valueOf(infoRecibida.getIdS()));
+                st.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void ejecutarVer() {
 
         }
     }
-    private class PagoBase implements ManipuladorDeBases{
+    public static class PagoBase implements ManipuladorDeBases{
 
         @Override
         public void ejecutarCrear() {
-
+            try {
+                st = con.prepareStatement(SQL_INSERT_P);
+                st.setString(1, String.valueOf(infoRecibida.getFecha()));
+                st.setString(2, String.valueOf(infoRecibida.getCosto()));
+                st.setString(3, String.valueOf(infoRecibida.getIdS()));
+                st.setString(4, infoRecibida.getNombre());
+                st.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void ejecutarModificar() {
-
+            try {
+                st = con.prepareStatement(SQL_UPDATE_P);
+                st.setString(1, String.valueOf(infoRecibida.getFecha()));
+                st.setString(2, String.valueOf(infoRecibida.getCosto()));
+                st.setString(3, String.valueOf(infoRecibida.getIdP()));
+                st.setString(4, String.valueOf(infoRecibida.getIdS()));
+                st.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void ejecutarEliminar() {
+            try {
+                st = con.prepareStatement(SQL_DELETE_P);
+                st.setString(1, String.valueOf(infoRecibida.getIdP()));
+                st.setString(2, String.valueOf(infoRecibida.getIdS()));
+                st.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void ejecutarVer() {
 
         }
     }
