@@ -10,4 +10,6 @@ module com.example.pruebainterfacesgrafica {
     exports com.example.pruebainterfacesgrafica;
     exports com.example.pruebainterfacesgrafica.controlador;
     opens com.example.pruebainterfacesgrafica.controlador to javafx.fxml;
+
+    opens com.example.pruebainterfacesgrafica.mecanica.dato to javafx.base;
 }

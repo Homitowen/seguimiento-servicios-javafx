@@ -2,6 +2,7 @@ package com.example.pruebainterfacesgrafica.controlador;
 
 import com.example.pruebainterfacesgrafica.mecanica.base.Base;
 import com.example.pruebainterfacesgrafica.mecanica.dato.Dato;
+import com.example.pruebainterfacesgrafica.mecanica.dato.Servicio;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -184,16 +185,16 @@ public class HelloController {
     private Label lbAñoResumen;
 
     @FXML
-    private TableView<?> tvServicio;
+    private TableView<Servicio> tvServicio;
 
     @FXML
-    private TableColumn<?, ?> tcIdServicioServicio;
+    private TableColumn<Servicio, Integer> tcIdServicioServicio;
 
     @FXML
-    private TableColumn<?, ?> tcNombreServicio;
+    private TableColumn<Servicio, String> tcNombreServicio;
 
     @FXML
-    private TableColumn<?, ?> tcPaginaServicio;
+    private TableColumn<Servicio, String> tcPaginaServicio;
 
     @FXML
     private TableView<?> tvPago;
@@ -294,7 +295,7 @@ public class HelloController {
 
     @FXML
     void onImprimir(ActionEvent event) {
-
+        selector.cargarTest();
     }
 
     @FXML
@@ -380,9 +381,11 @@ public class HelloController {
 
         pago = new PagoParte(hBoxPago,btnCrearPago,btnModificarPago,btnEliminarPago,vBoxIdServicioPago,vBoxNombrePago,vBoxIdPago,vBoxFechaPago,vBoxCostoPago,txtIdServicio,txtNombrePago,txtIdPago,txtCosto,dpFecha);
 
-        servicioTabla = new ServicioTabla(hbTituloServicio, tvServicio, tcIdServicioServicio, tcNombreServicio);
+        servicioTabla = new ServicioTabla(hbTituloServicio, tvServicio, tcIdServicioServicio, tcNombreServicio, tcPaginaServicio);
 
-        selector = new Cerebro(mbTipo, mbActividad, mbServicio, mbPago, mbCrear, mbModificar, mbEliminar, servicio, pago, servicioTabla);
+        pagoTabla = new PagoTabla(hbTituloPago, tvPago, tcIdServicioPago, tcNombrePago, tcIdPagoPago, tcFechaPago, tcCostoPago);
+
+        selector = new Cerebro(mbTipo, mbActividad, mbServicio, mbPago, mbCrear, mbModificar, mbEliminar, servicio, pago, servicioTabla, pagoTabla);
 
 
 
