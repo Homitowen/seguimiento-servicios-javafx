@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 public class ServicioTabla extends Tabla{
     private TableColumn idServicio, nombre, pagina;
     private TestTablas test;
-    private Servicio renglonElegido;
+    protected Servicio renglonElegido;
 
     public ServicioTabla(HBox titulo, TableView tabla, TableColumn idServicio, TableColumn nombre) {
         super(titulo, tabla);

@@ -77,7 +77,11 @@ public class PagoCargador extends Cargador {
 
     @Override
     public void recibirInformacionTabla(Informacion info) {
-
+        idServicio.setText(String.valueOf(info.getIdS()));
+        nombre.setText(info.getNombre());
+        idPago.setText(String.valueOf(info.getIdP()));
+        fecha.setValue(info.getFecha());
+        costo.setText(String.valueOf(info.getCosto()));
     }
 
     @Override

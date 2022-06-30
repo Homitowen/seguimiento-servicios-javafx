@@ -1,6 +1,8 @@
 package com.example.pruebainterfacesgrafica.controlador;
 
 import com.example.pruebainterfacesgrafica.mecanica.constantes.Cte;
+import com.example.pruebainterfacesgrafica.mecanica.dato.Informacion;
+import com.example.pruebainterfacesgrafica.mecanica.dato.Servicio;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -26,5 +28,12 @@ public class PagoTabla extends ServicioTabla{
         idPago.setCellValueFactory(new PropertyValueFactory("idP"));
         fecha.setCellValueFactory(new PropertyValueFactory("fecha"));
         costo.setCellValueFactory(new PropertyValueFactory("costo"));
+    }
+
+    @Override
+    public Informacion enviarRenglonClickeado() {
+        renglonElegido = (Servicio.Pago) getTabla().getSelectionModel().getSelectedItems().get(0);
+        System.out.println(renglonElegido);
+        return renglonElegido;
     }
 }
