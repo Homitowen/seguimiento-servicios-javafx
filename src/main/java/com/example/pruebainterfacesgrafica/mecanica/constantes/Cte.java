@@ -47,7 +47,7 @@ public class  Cte {
     public static final String SQL_DELETE_S = "DELETE FROM "+ tablaServicio +" WHERE "+tablaServicioId+" = ?";
                 //Pago
     public static final String SQL_SELECT_P = "SELECT * FROM " + tablaPago + " WHERE "+tablaServicioId+" = ?";
-    public static final String SQL_INSERT_P = "INSERT INTO "+ tablaPago +" SET "+tablaPagoFecha+" = ?, "+tablaPagoCosto+" = ?, "+tablaServicioId+" = ?";
+    public static final String SQL_INSERT_P = "INSERT INTO "+ tablaPago +" SET "+tablaPagoFecha+" = ?, "+tablaPagoCosto+" = ?, "+tablaServicioId+" = ?, "+tablaServicioNombre+" = ?";
     public static final String SQL_UPDATE_P = "UPDATE "+ tablaPago +" SET  "+tablaPagoFecha+" = ?, "+tablaPagoCosto+" = ?  WHERE "+tablaPagoId+" = ? AND "+tablaServicioId+" = ?";
     public static final String SQL_DELETE_P = "DELETE FROM "+ tablaPago +" WHERE "+tablaPagoId+" = ? AND "+tablaServicioId+" = ?";
 

@@ -1,10 +1,14 @@
 package com.example.pruebainterfacesgrafica.mecanica.dato;
 
+import com.example.pruebainterfacesgrafica.mecanica.constantes.Cte;
+
 import java.time.LocalDate;
 
 public class Servicio implements Informacion{
     private int idS;
     private String nombre, pagina;
+    private Cte.Tipo tipo = Cte.Tipo.SERVICIO;
+    protected Cte.Act act;
 
     @Override
     public String toString() {
@@ -15,24 +19,47 @@ public class Servicio implements Informacion{
                 '}';
     }
 
+    /**
+     * Eliminar
+     * @param idS
+     */
     public Servicio(int idS) {
         this.idS = idS;
+        act = Cte.Act.ELIMINAR;
     }
 
+    /**
+     * Para pagos, no se usa solo
+     * @param idS
+     * @param nombre
+     */
     public Servicio(int idS, String nombre) {
         this.idS = idS;
         this.nombre = nombre;
     }
 
+    /**
+     * Crear
+     * @param nombre
+     * @param pagina
+     */
     public Servicio(String nombre, String pagina) {
         this.nombre = nombre;
         this.pagina = pagina;
+        act = Cte.Act.CREAR;
     }
 
+    /**
+     * Modificar
+     * @param idS
+     * @param nombre
+     * @param pagina
+     */
     public Servicio(int idS, String nombre, String pagina) {
         this.idS = idS;
         this.nombre = nombre;
         this.pagina = pagina;
+        act = Cte.Act.MODIFICAR;
     }
 
     @Override
@@ -65,11 +92,24 @@ public class Servicio implements Informacion{
         return Double.parseDouble(null);
     }
 
+    @Override
+    public Cte.Tipo getTipo() {
+        return tipo;
+    }
+
+    @Override
+    public Cte.Act getActvidiad() {
+        return null;
+    }
+
     public static class Pago extends Servicio{
 
         private int idP;
         private LocalDate fecha;
         private double costo;
+        private Cte.Tipo tipo = Cte.Tipo.PAGO;
+
+
 
         /**
          * Eliminar
@@ -79,6 +119,8 @@ public class Servicio implements Informacion{
         public Pago(int idS, int idP) {
             super(idS);
             this.idP = idP;
+
+            act = Cte.Act.ELIMINAR;
         }
 
         /**
@@ -92,6 +134,7 @@ public class Servicio implements Informacion{
             super(idS, nombre);
             this.fecha = fecha;
             this.costo = costo;
+            act = Cte.Act.CREAR;
         }
 
         /**
@@ -107,6 +150,7 @@ public class Servicio implements Informacion{
             this.idP = idP;
             this.fecha = fecha;
             this.costo = costo;
+            act = Cte.Act.MODIFICAR;
         }
 
         @Override

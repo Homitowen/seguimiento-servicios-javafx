@@ -73,7 +73,40 @@ public class Base {
 
     }
 
+    private class ServicioBase implements ManipuladorDeBases{
 
+        @Override
+        public void ejecutarCrear() {
+
+        }
+
+        @Override
+        public void ejecutarModificar() {
+
+        }
+
+        @Override
+        public void ejecutarEliminar() {
+
+        }
+    }
+    private class PagoBase implements ManipuladorDeBases{
+
+        @Override
+        public void ejecutarCrear() {
+
+        }
+
+        @Override
+        public void ejecutarModificar() {
+
+        }
+
+        @Override
+        public void ejecutarEliminar() {
+
+        }
+    }
 
 
 
