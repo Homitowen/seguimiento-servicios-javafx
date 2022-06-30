@@ -39,10 +39,10 @@ public class TestTablas {
 
     public void determinarTablayCargar(Tabla tabla){
 
-        switch (tabla.getTipo()){
-            case SERVICIO -> tabla.cargarTabla(conjuntoServiciosTest());
-            case PAGO -> tabla.cargarTabla(conjuntoPagoTest());
-        }
+//        switch (tabla.getTipo()){
+//            case SERVICIO -> tabla.cargarTabla(conjuntoServiciosTest());
+//            case PAGO -> tabla.cargarTabla(conjuntoPagoTest());
+//        }
 
     }
 }

@@ -64,6 +64,7 @@ public class Cerebro {
         cargadorElegido.mostrar();
         adaptarPrimerTabla();
         tablaElegida.mostrar();
+        cargarServiciosDisponibles();
 
     }
     public void mostrarPago(){
@@ -105,6 +106,11 @@ public class Cerebro {
     }
     public void cargarTablaAlTest() {
         test.determinarTablayCargar(tablaElegida);
+    }
+    private void cargarServiciosDisponibles(){
+        b.forzarObtencionServicios();
+        b.comenzarProcesoInformacion();
+        tablaElegida.cargarTabla(b.getBaseElegida().devolverResultado());
     }
 
     public void apagar() {

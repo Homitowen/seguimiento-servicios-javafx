@@ -39,7 +39,7 @@ public class ServicioTabla extends Tabla{
     }
 
     @Override
-    public void cargarTabla(ObservableList<Servicio> conjunto) {
+    public void cargarTabla(ObservableList<Informacion> conjunto) {
         super.getTabla().setItems(conjunto);
     }
 
@@ -58,8 +58,4 @@ public class ServicioTabla extends Tabla{
     }
 
 
-    @Override
-    public void actualizar() {
-
-    }
 }

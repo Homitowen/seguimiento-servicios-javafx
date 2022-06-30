@@ -52,10 +52,9 @@ public abstract class Tabla {
     }
 
 
-    public abstract void cargarTabla(ObservableList<Servicio> conjunto);
+    public abstract void cargarTabla(ObservableList<Informacion> conjunto);
     public abstract void configurarColumnas();
     public abstract Informacion enviarRenglonClickeado();
-    public abstract void actualizar();
 
     public HBox getTitulo() {
         return this.titulo;

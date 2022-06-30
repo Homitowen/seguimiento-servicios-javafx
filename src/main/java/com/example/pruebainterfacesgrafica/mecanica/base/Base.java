@@ -1,7 +1,11 @@
 package com.example.pruebainterfacesgrafica.mecanica.base;
 import com.example.pruebainterfacesgrafica.mecanica.dato.Informacion;
+import com.example.pruebainterfacesgrafica.mecanica.dato.Servicio;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import static com.example.pruebainterfacesgrafica.mecanica.constantes.Cte.*;
 
@@ -15,10 +19,16 @@ public class Base {
     private String url, user, pass;
     private static Connection con;
     private static PreparedStatement st;
-    private ResultSet rs;
+    private static ResultSet rs;
     private String cabCrear, cabMod, cabEl;
     private static Informacion infoRecibida;
     private ManipuladorDeBases baseElegida;
+    private static ArrayList<Informacion> conjuntoParaEnviar;
+
+
+    public ManipuladorDeBases getBaseElegida() {
+        return this.baseElegida;
+    }
 
     public ResultSet getRs() {
         return this.rs;
@@ -82,6 +92,13 @@ public class Base {
         ManipuladorDeBases.identificarElegirActividad(infoRecibida, baseElegida);
     }
 
+    public void forzarObtencionServicios() {
+        infoRecibida = new Servicio();
+        comenzarProcesoInformacion();
+
+
+    }
+
 
     public static class ServicioBase implements ManipuladorDeBases{
 
@@ -123,7 +140,33 @@ public class Base {
 
         @Override
         public void ejecutarVer() {
+            try {
+                st = con.prepareStatement(SQL_SELECT_S);
+                rs = st.executeQuery();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 
+        @Override
+        public ObservableList<Informacion> devolverResultado() {
+
+
+
+
+            try {
+                conjuntoParaEnviar = new ArrayList<Informacion>();
+                while (rs.next()){
+                    conjuntoParaEnviar.add(new Servicio(
+                            rs.getInt(tablaServicioId),
+                            rs.getString(tablaServicioNombre),
+                            rs.getString(tablaServicioPagina)
+                    ));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return FXCollections.observableList(conjuntoParaEnviar);
         }
     }
     public static class PagoBase implements ManipuladorDeBases{
@@ -171,6 +214,11 @@ public class Base {
         @Override
         public void ejecutarVer() {
 
+        }
+
+        @Override
+        public ObservableList<Informacion> devolverResultado() {
+            return null;
         }
     }
 

@@ -1,6 +1,7 @@
 package com.example.pruebainterfacesgrafica.mecanica.base;
 
 import com.example.pruebainterfacesgrafica.mecanica.dato.Informacion;
+import javafx.collections.ObservableList;
 
 public interface ManipuladorDeBases {
 
@@ -24,4 +25,5 @@ public interface ManipuladorDeBases {
     void ejecutarModificar();
     void ejecutarEliminar();
     void ejecutarVer();
+    ObservableList<Informacion> devolverResultado();
 }

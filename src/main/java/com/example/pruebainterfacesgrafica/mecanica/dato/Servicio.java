@@ -15,6 +15,13 @@ public class Servicio implements Informacion{
         tipo = Cte.Tipo.SERVICIO;
     }
 
+    /**
+     * Solo se debe usar para cargar la lista de servicios totales
+     */
+    public Servicio() {
+        act = Cte.Act.VER;
+    }
+
     @Override
     public String toString() {
         return "Servicio{" +
