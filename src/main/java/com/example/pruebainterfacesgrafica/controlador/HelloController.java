@@ -244,6 +244,7 @@ public class HelloController {
     @FXML
     void onClickServicio(MouseEvent event) {
         cerebro.pasarTablaAlCargador();
+        cerebro.obtenerServicioAuxiliar();
     }
 
     @FXML

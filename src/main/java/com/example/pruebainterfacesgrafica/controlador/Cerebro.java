@@ -2,6 +2,8 @@ package com.example.pruebainterfacesgrafica.controlador;
 
 import com.example.pruebainterfacesgrafica.TestTablas;
 import com.example.pruebainterfacesgrafica.mecanica.base.Base;
+import com.example.pruebainterfacesgrafica.mecanica.dato.Informacion;
+import com.example.pruebainterfacesgrafica.mecanica.dato.Servicio;
 import javafx.application.Platform;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -13,6 +15,8 @@ public class Cerebro {
     private Cargador servicioCargador, pagoCargador, cargadorElegido;
     private Tabla servicioTabla, pagoTabla, tablaElegida;
     private TestTablas test;
+    
+    private Informacion informacionSeleccionadaAuxiliar;
 
     public Cerebro(MenuButton tipo, MenuButton actividad, MenuItem tipoServicio, MenuItem tipoPago, MenuItem actCrear, MenuItem actModificar, MenuItem actEliminar, Cargador servicio, Cargador pagoCargador, Tabla servicioTabla, Tabla pagoTabla) {
         this.tipo = tipo;
@@ -121,5 +125,9 @@ public class Cerebro {
     private void enviarInformacionCerebroBase(){
         b.setInfoRecibida(cargadorElegido.obtenerInformacionCargada());
         b.comenzarProcesoInformacion();
+    }
+
+    public void obtenerServicioAuxiliar() {
+        informacionSeleccionadaAuxiliar = servicioTabla.enviarRenglonClickeado();
     }
 }
